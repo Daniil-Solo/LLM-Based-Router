@@ -20,3 +20,6 @@ jobs:
           echo "MISTRAL_KEY is: $MISTRAL_KEY"
       - name: Print all environment variables
         run: printenv
+      - name: Openai
+        run: |
+          echo "OpenAO: $OPENAI_KEY"
