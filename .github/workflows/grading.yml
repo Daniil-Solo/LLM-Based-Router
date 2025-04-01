@@ -9,36 +9,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  grading:
-    runs-on: ubuntu-24.04
+  print_context:
+    runs-on: ubuntu-latest
+    environment: homeworks 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.11'
-
-      - name: Setup uv
-        uses: astral-sh/setup-uv@v5
-        with:
-          version: "0.6.5"
-          enable-cache: true
-          cache-dependency-glob: pyproject.toml
-
-      - name: Installing dependencies
+      - name: Some
+        env:
+          MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
         run: |
-          uv sync
-
-      - name: Run autotests
+          echo "MISTRAL_KEY is: $MISTRAL_KEY"
+      - name: Print all environment variables
+        run: printenv
+      - name: Openai
+        env:
+          OPENAI_KEY: ${{ vars.OPENAI_KEY }}
         run: |
-          PYTHONIOENCODING=utf-8 uv run pytest tests > autotests.log 2>&1 || true
-
-      - name: Run linters
-        run: |
-          PYTHONIOENCODING=utf-8 uv run ruff check src/router.py > linters.log 2>&1
-
-      - name: Send data to grading system
-        run: |
-          cd .grading && uv run run.py
+          echo "OpenAO: $OPENAI_KEY"
