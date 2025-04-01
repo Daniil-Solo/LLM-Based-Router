@@ -9,6 +9,14 @@ on:
   workflow_dispatch:
 
 jobs:
+  print_context:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+        run: |
+          echo $EVENT_CONTEXT
+
   grading:
     runs-on: ubuntu-24.04
     steps:
