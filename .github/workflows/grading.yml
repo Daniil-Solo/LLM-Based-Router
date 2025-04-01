@@ -21,5 +21,7 @@ jobs:
       - name: Print all environment variables
         run: printenv
       - name: Openai
+        env:
+          OPENAI_KEY: ${{ vars.OPENAI_KEY }}
         run: |
           echo "OpenAO: $OPENAI_KEY"
