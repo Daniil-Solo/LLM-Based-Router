@@ -11,10 +11,12 @@ on:
 jobs:
   print_context:
     runs-on: ubuntu-latest
-    env:
-      MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
+    environment: homeworks 
     steps:
-      - run: |
+      - name: Some
+        env:
+          MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
+        run: |
           echo "MISTRAL_KEY is: $MISTRAL_KEY"
       - name: Print all environment variables
         run: printenv
