@@ -15,5 +15,6 @@ jobs:
       MISTRAL_KEY: ${{ secrets.MISTRAL_KEY }}
     steps:
       - run: |
-          echo $MISTRAL_KEY
-      
+          echo "MISTRAL_KEY is: $MISTRAL_KEY"
+      - name: Print all environment variables
+        run: printenv
